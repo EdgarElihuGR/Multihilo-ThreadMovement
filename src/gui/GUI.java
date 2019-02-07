@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -14,35 +15,36 @@ import javax.swing.JPanel;
 
 public class GUI extends JFrame implements KeyListener {
 
-    private JPanel mainPanel;
-    private JLabel lbl;
+    private MiLabel miLbl;
 
     public GUI() {
         super("Threads");
-        setBounds(400, 100, 600, 600);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setBounds(400, 100, 500, 500);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLayout(null);
         addKeyListener(this);
 
-        mainPanel = new JPanel();
-        lbl = new JLabel("Thread");
+        miLbl = new MiLabel();
+        miLbl.setText("Thread");
 
-        mainPanel.add(lbl);
-        getContentPane().add(mainPanel);
+        getContentPane().add(miLbl);
+        new Thread(miLbl).start();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getExtendedKeyCode() == KeyEvent.VK_UP) {
-            lbl.setLocation(lbl.getX(), lbl.getY() - 5);
+
+            miLbl.setLocation(miLbl.getX(), miLbl.getY() - 5);
         }
         if (e.getExtendedKeyCode() == KeyEvent.VK_DOWN) {
-            lbl.setLocation(lbl.getX(), lbl.getY() + 5);
+            miLbl.setLocation(miLbl.getX(), miLbl.getY() + 5);
         }
         if (e.getExtendedKeyCode() == KeyEvent.VK_LEFT) {
-            lbl.setLocation(lbl.getX() - 5, lbl.getY());
+            miLbl.setLocation(miLbl.getX() - 5, miLbl.getY());
         }
         if (e.getExtendedKeyCode() == KeyEvent.VK_RIGHT) {
-            lbl.setLocation(lbl.getX() + 5, lbl.getY());
+            miLbl.setLocation(miLbl.getX() + 5, miLbl.getY());
         }
     }
 
